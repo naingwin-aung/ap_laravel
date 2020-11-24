@@ -19,7 +19,7 @@
                         <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="{{url("/posts")}}" class="btn btn-warning">Back</a>
+                        <a href="{{route('posts')}}" class="btn btn-warning">Back</a>
                         <button class="btn btn-primary">Create New Post</button>
                     </div>
                 </form>

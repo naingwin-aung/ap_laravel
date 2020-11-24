@@ -4,7 +4,7 @@
    <div class="container">
     <a href="{{url("/posts/create")}}" class="btn btn-success mb-3">New Post</a>
        @foreach ($posts as $post)
-            <div class="card mb-3 shadow-sm border-0">
+            <div class="card mb-3 shadow border-0">
                 <div class="card-header h4 bg-dark text-white">
                     {{$post->name}}
                 </div>

@@ -28,21 +28,18 @@ class PostController extends Controller
         return redirect('/posts');
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
-       $post = Post::findOrFail($id);
        return(view('show', compact('post')));
     }
 
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
         return (view('edit', compact('post')));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::findOrFail($id);
         $post->name = $request->name;
         $post->description = $request->description;
         $post->save();
@@ -50,9 +47,9 @@ class PostController extends Controller
         return redirect('/posts');
     }
 
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        Post::findOrFail($id)->delete();
+        $post->delete();
         return redirect('/posts');
     }
 }
