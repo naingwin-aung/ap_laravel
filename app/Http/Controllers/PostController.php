@@ -23,7 +23,6 @@ class PostController extends Controller
         $data = new Post();
         $data->name = $request->name;
         $data->description = $request->description;
-        
         $data->save();
 
         return redirect('/posts');
@@ -31,21 +30,29 @@ class PostController extends Controller
 
     public function show($id)
     {
-        //
+       $post = Post::findOrFail($id);
+       return(view('show', compact('post')));
     }
 
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return (view('edit', compact('post')));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->name = $request->name;
+        $post->description = $request->description;
+        $post->save();
+
+        return redirect('/posts');
     }
 
     public function destroy($id)
     {
-        //
+        Post::findOrFail($id)->delete();
+        return redirect('/posts');
     }
 }
