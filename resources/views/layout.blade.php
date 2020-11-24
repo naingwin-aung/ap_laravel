@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h2 class="text-center">Sample Blog</h2>
+    <h2 class="text-center my-4">Sample Blog</h2>
     @yield('content')
 </body>
 </html>
