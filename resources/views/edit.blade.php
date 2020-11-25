@@ -7,13 +7,23 @@
                 Edit Your Post    
             </div>    
 
+            @if($errors->any())
+                <div class="alert alert-danger mt-3">
+                    <ul class="list-group">
+                        @foreach ($errors->all() as $error)
+                            <li class="list-group-item">{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif 
+
             <div class="card-body">
                 <form action="{{url("/posts/$post->id")}}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
                         <label for="">Name</label>
-                        <input type="text" name="name" class="form-control" value="{{$post->name}}">
+                        <input type="text" name="name" class="form-control" value="{{old('name', $post->name)}}">
                     </div>
                     <div class="form-group">
                         <label for="">Description</label>

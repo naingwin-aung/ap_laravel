@@ -7,16 +7,38 @@
                 New Post    
             </div>    
 
+            {{-- @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="list-group">
+                        @foreach ($errors->all() as $error)
+                            <li class="list-group-item">{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif --}}
+            
             <div class="card-body">
                 <form action="/posts" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="">Name</label>
-                        <input type="text" name="name" class="form-control">
+                    <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" value="{{old('name')}}">
+
+                        @error('name')
+                                <div class="alert alert-danger mt-3">
+                                    {{$message}}
+                                </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="">Description</label>
-                        <textarea name="description" class="form-control" cols="30" rows="10"></textarea>
+                    <textarea name="description" class="@error('description') is-invalid @enderror form-control" cols="30" rows="10">{{old('description')}}</textarea>
+
+                        @error('description')
+                            <div class="alert alert-danger mt-3">
+                                {{$message}}
+                            </div>
+                        @enderror
                     </div>
                     <div class="d-flex justify-content-between">
                         <a href="{{route('posts')}}" class="btn btn-warning">Back</a>

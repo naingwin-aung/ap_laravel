@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\EditPostRequest;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -18,8 +20,9 @@ class PostController extends Controller
         return view('create');
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
+        // $validated = $request->validated();
         $data = new Post();
         $data->name = $request->name;
         $data->description = $request->description;
@@ -38,8 +41,9 @@ class PostController extends Controller
         return (view('edit', compact('post')));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(EditPostRequest $request, Post $post)
     {
+        // $validated = $request->validated();
         $post->name = $request->name;
         $post->description = $request->description;
         $post->save();
