@@ -23,10 +23,18 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         // $validated = $request->validated();
-        $data = new Post();
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->save();
+
+        // $data = new Post();
+        // $data->name = $request->name;
+        // $data->description = $request->description;
+        // $data->save();
+
+        // Post::create($request->all());
+
+        Post::create([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
 
         return redirect('/posts');
     }
@@ -44,9 +52,15 @@ class PostController extends Controller
     public function update(EditPostRequest $request, Post $post)
     {
         // $validated = $request->validated();
-        $post->name = $request->name;
-        $post->description = $request->description;
-        $post->save();
+
+        // $post->name = $request->name;
+        // $post->description = $request->description;
+        // $post->save();
+
+        $post->update([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
 
         return redirect('/posts');
     }

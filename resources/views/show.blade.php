@@ -5,6 +5,7 @@
         <div class="card mb-3 shadow border-0">
             <div class="card-header h4 bg-dark text-white ">
                 {{$post->name}}
+                <p class="text-muted small">Category ::{{ $post->category->name}}</p>
             </div>
                 <div class="card-body">
                     <p class="card-text">{{ $post->description }}</p>

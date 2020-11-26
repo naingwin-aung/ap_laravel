@@ -24,6 +24,7 @@ class PostFactory extends Factory
         return [
             "name" => $this->faker->sentence,
             "description" => $this->faker->paragraph,
+            "category_id" => rand(1, 3)
         ]; 
     }
 }
