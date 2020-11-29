@@ -25,10 +25,18 @@
                         <label for="">Name</label>
                         <input type="text" name="name" class="form-control" value="{{old('name', $post->name)}}">
                     </div>
+
                     <div class="form-group">
                         <label for="">Description</label>
                     <textarea name="description" class="form-control" cols="30" rows="10">{{$post->description}}</textarea>
                     </div>
+
+                    <select name="category_id" id="" class="form-control mb-5">
+                        @foreach ($categories as $cat)
+                        <option value="{{$cat->id}}" {{ $cat->id == $post->category_id ? "selected" : "" }}>{{$cat->name}}</option>
+                        @endforeach
+                    </select>
+
                     <div class="d-flex justify-content-between">
                         <a href="{{route('posts')}}" class="btn btn-warning">Back</a>
                         <button class="btn btn-primary">Update Your Post</button>

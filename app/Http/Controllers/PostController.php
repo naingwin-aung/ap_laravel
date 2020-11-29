@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\EditPostRequest;
 use App\Http\Requests\StorePostRequest;
@@ -17,24 +18,22 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('create');
+        $category = Category::all();
+        return view('create', compact('category'));
     }
 
     public function store(StorePostRequest $request)
     {
-        // $validated = $request->validated();
-
+        
         // $data = new Post();
         // $data->name = $request->name;
         // $data->description = $request->description;
         // $data->save();
-
+        
         // Post::create($request->all());
-
-        Post::create([
-            'name' => $request->name,
-            'description' => $request->description
-        ]);
+        
+        $validated = $request->validated();
+        Post::create($validated);
 
         return redirect('/posts');
     }
@@ -46,21 +45,19 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return (view('edit', compact('post')));
+        $categories = Category::all();
+        return (view('edit', compact('post', 'categories')));
     }
 
     public function update(EditPostRequest $request, Post $post)
     {
-        // $validated = $request->validated();
-
+        
         // $post->name = $request->name;
         // $post->description = $request->description;
         // $post->save();
-
-        $post->update([
-            'name' => $request->name,
-            'description' => $request->description
-        ]);
+        
+        $validated = $request->validated();
+        $post->update($validated);
 
         return redirect('/posts');
     }

@@ -24,15 +24,16 @@
                         <label for="">Name</label>
                     <input type="text" name="name" class="@error('name') is-invalid @enderror form-control" value="{{old('name')}}">
 
-                        @error('name')
-                                <div class="alert alert-danger mt-3">
-                                    {{$message}}
-                                </div>
-                        @enderror
+                    @error('name')
+                            <div class="alert alert-danger mt-3">
+                                {{$message}}
+                            </div>
+                    @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="">Description</label>
-                    <textarea name="description" class="@error('description') is-invalid @enderror form-control" cols="30" rows="10">{{old('description')}}</textarea>
+                        <textarea name="description" class="@error('description') is-invalid @enderror form-control" cols="30" rows="10">{{old('description')}}</textarea>
 
                         @error('description')
                             <div class="alert alert-danger mt-3">
@@ -40,6 +41,20 @@
                             </div>
                         @enderror
                     </div>
+
+                    <select name="category_id" id="" class="form-control mb-5 @error           ('category') is-invalid @enderror">
+                        <option value="" disabled selected>Select Category</option>
+                        @foreach ($category as $cat)
+                            <option value="{{$cat->id}}">{{old('category', $cat->name)}}</option>
+                        @endforeach
+                    </select>
+
+                    @error('category')
+                        <div class="alert alert-danger mt-3">
+                            {{$message}}
+                        </div>
+                    @enderror
+
                     <div class="d-flex justify-content-between">
                         <a href="{{route('posts')}}" class="btn btn-warning">Back</a>
                         <button class="btn btn-primary">Create New Post</button>
