@@ -2,9 +2,13 @@
 
 @section('content')
    <div class="container">
-    <a href="{{url("/posts/create")}}" class="btn btn-success mb-3">New Post</a>
+       <div class="d-flex justify-content-between">
+           <a href="{{url("/posts/create")}}" class="btn btn-success mb-3">New Post</a>
+           <a href="{{url('logout')}}" class="btn btn-danger mb-3">Logout</a>
+       </div>
+
        @foreach ($posts as $post)
-            <div class="card mb-3 shadow border-0">
+            <div class="card mb-4 shadow border-0">
                 <div class="card-header h4 bg-dark text-white">
                     {{$post->name}}
                     <p class="text-muted small">Category ::{{ $post->category->name}}</p>
