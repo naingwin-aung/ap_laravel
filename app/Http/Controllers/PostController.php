@@ -17,7 +17,7 @@ class PostController extends Controller
     
     public function index()
     {
-        $posts = Post::orderBy('id', 'DESC')->get();
+        $posts = Post::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
         return view('home', compact('posts'));
     }
 
@@ -45,11 +45,21 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        // if($post->user_id != auth()->id()) {
+        //     abort(403);
+        // }
+
+       $this->authorize('view', $post);
        return(view('show', compact('post')));
     }
 
     public function edit(Post $post)
     {
+        // if($post->user_id != auth()->id()) {
+        //     abort(403);
+        // }
+        
+        $this->authorize('view', $post);
         $categories = Category::all();
         return (view('edit', compact('post', 'categories')));
     }

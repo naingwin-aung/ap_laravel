@@ -9,7 +9,7 @@
             </div>
                 <div class="card-body">
                     <p class="card-text">{{ $post->description }}</p>
-                    <a href="{{route('posts')}}" class="btn btn-warning">Back</a>
+                    <a href="{{url('/posts')}}" class="btn btn-warning">Back</a>
             </div>
         </div>
     </div>

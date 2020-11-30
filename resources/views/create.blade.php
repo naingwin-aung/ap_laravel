@@ -56,7 +56,7 @@
                     @enderror
 
                     <div class="d-flex justify-content-between">
-                        <a href="{{route('posts')}}" class="btn btn-warning">Back</a>
+                        <a href="{{url('/posts')}}" class="btn btn-warning">Back</a>
                         <button class="btn btn-primary">Create New Post</button>
                     </div>
                 </form>

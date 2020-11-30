@@ -15,7 +15,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', [PostController::class, 'index'])->name('posts');
+// Route::get('/', [PostController::class, 'login'])->name('posts');
 
 Route::resource('/posts', PostController::class);
 

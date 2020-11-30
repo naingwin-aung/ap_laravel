@@ -7,6 +7,9 @@
            <a href="{{url('logout')}}" class="btn btn-danger mb-3">Logout</a>
        </div>
 
+       <h5 class="my-3 font-weight-bold text-danger">
+           User Name - {{ Auth::user()->name }}
+       </h5>
        @foreach ($posts as $post)
             <div class="card mb-4 shadow border-0">
                 <div class="card-header h4 bg-dark text-white">
