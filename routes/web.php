@@ -1,6 +1,10 @@
 <?php
 
+use App\Test;
+use App\TestFacade;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 
@@ -15,7 +19,9 @@ use App\Http\Controllers\PostController;
 |
 */
 
-// Route::get('/', [PostController::class, 'login'])->name('posts');
+Route::get('/', function() {
+    dd(TestFacade::execute());
+});
 
 Route::resource('/posts', PostController::class);
 

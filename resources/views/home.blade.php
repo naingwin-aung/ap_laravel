@@ -1,7 +1,15 @@
 @extends('layout')
 
 @section('content')
-   <div class="container">
+    <div class="container">
+        @if (session('status'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
        <div class="d-flex justify-content-between">
            <a href="{{url("/posts/create")}}" class="btn btn-success mb-3">New Post</a>
            <a href="{{url('logout')}}" class="btn btn-danger mb-3">Logout</a>
