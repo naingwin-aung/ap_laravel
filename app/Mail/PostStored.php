@@ -34,7 +34,6 @@ class PostStored extends Mailable
         ->subject('Post Creation')
         ->with([
             'post' => $this->post
-        ])
-        ;
+        ]);
     }
 }

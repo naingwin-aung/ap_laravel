@@ -19,8 +19,12 @@ use App\Http\Controllers\PostController;
 |
 */
 
+// Route::get('/', function() {
+//     dd(TestFacade::execute());
+// });
+
 Route::get('/', function() {
-    dd(TestFacade::execute());
+    return view('welcome');
 });
 
 Route::resource('/posts', PostController::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostCreatedEvent;
 use App\Test;
 use App\Models\Post;
 use App\Mail\PostStored;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\EditPostRequest;
 use App\Http\Requests\StorePostRequest;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\PostCreatedNotification;
 
 class PostController extends Controller
 {
@@ -22,6 +25,13 @@ class PostController extends Controller
      
     public function index()
     {   
+        # Sending Notifications
+        // $user = auth()->user();
+        // $user->notify(new PostCreatedNotification());
+        
+        // Notification::send(auth()->user(), new PostCreatedNotification());
+        // echo "noti send"; exit();
+
         $posts = Post::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
         return view('home', compact('posts'));
     }
@@ -44,6 +54,8 @@ class PostController extends Controller
         $validated = $request->validated();
         $post = Post::create($validated + ['user_id'=>auth()->user()->id]);
 
+        PostCreatedEvent::dispatch($post);
+        
         return redirect('/posts')->with('status', config('ap.message.created'));
     }
 
